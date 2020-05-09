@@ -1,5 +1,5 @@
 import {combineReducers, ReducersMapObject} from 'redux';
-import {accountingReducer, claimsReducer} from "./reducers";
+import {accountingReducer, claimsReducer, policiesReducer} from "./reducers";
 
 export interface Claim {
     firstName: string;
@@ -14,14 +14,15 @@ export interface Policy {
 }
 
 export interface StoreState {
-    oldListOfClaims: Claim[];
+    listOfClaims: Claim[];
     bagOfMoney: number;
-
+    listOfPolicies: Policy[];
 }
 
 
 export const reducers = combineReducers<StoreState>({
-        oldListOfClaims: claimsReducer,
+        listOfClaims: claimsReducer,
         bagOfMoney: accountingReducer,
+        listOfPolicies: policiesReducer,
     }
 );

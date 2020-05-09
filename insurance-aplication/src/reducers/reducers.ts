@@ -1,23 +1,23 @@
-import {Reducer} from "redux";
+import {bindActionCreators, Reducer} from "redux";
 import {Action} from "../actions";
 import {InsuranceTypes} from "../actions/types";
-import {Claim} from './index';
+import {Claim, Policy} from './index';
 
 
 /**
  * Velky pozor, musime osetrit, ze na zaciatku v state nebudu ziadne data: state: Claim[] = []
- * @param oldListOfClaims
+ * @param listOfClaims
  * @param action
  */
-export const claimsReducer:  Reducer<Claim[], Action> = (oldListOfClaims: Claim[] = [],
+export const claimsReducer:  Reducer<Claim[], Action> = (listOfClaims: Claim[] = [],
                                                        action: Action): Claim[] => {
 
     switch(action.type) {
         case InsuranceTypes.createClaim:
             // !!!! we want to return new object of Claim !!! no updated ald object
-            return [...oldListOfClaims, action.payload];
+            return [...listOfClaims, action.payload];
         default:
-            return oldListOfClaims;
+            return listOfClaims;
     }
 };
 
@@ -36,5 +36,19 @@ export const accountingReducer: Reducer<number, Action> = (bagOfMoney: number = 
             return bagOfMoney + action.payload.cash;
         default:
             return bagOfMoney;
+    }
+};
+
+export const policiesReducer: Reducer<Policy[], Action> = (listOfPolicies: Policy[] = [],
+                                                           action: Action): Policy[] => {
+    switch(action.type) {
+        case InsuranceTypes.createPolicy:
+            return [...listOfPolicies, action.payload];
+        case InsuranceTypes.deletePolicy:
+            // TODO sprav filter
+            return listOfPolicies.filter((policy) => !(policy.firstName === action.payload.firstName &&
+                policy.lastName === action.payload.lastName));
+        default:
+            return listOfPolicies;
     }
 }

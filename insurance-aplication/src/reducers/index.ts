@@ -20,7 +20,7 @@ export interface StoreState {
 }
 
 
-export const reducers = combineReducers<StoreState>({
+export const departmentReducers = combineReducers<StoreState>({
         listOfClaims: claimsReducer,
         bagOfMoney: accountingReducer,
         listOfPolicies: policiesReducer,

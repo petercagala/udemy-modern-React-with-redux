@@ -3,18 +3,27 @@ import {CreateClaim} from "./index";
 import {InsuranceTypes} from "./types";
 
 
-export const createClaim = (firstName: string, lastName: string, claimAmount: number): Function => {
+export const createClaim = (firstName: string, lastName: string, claimAmount: number): CreateClaim => {
 
-    return (dispatch: Dispatch): void => {
-        dispatch<CreateClaim>(
-            {
-                type: InsuranceTypes.createClaim,
-                payload: {
-                    firstName: firstName,
-                    lastName: lastName,
-                    claimAmount: claimAmount,
-                },
-            }
-        );
-    };
+    return {
+        type: InsuranceTypes.createClaim,
+        payload: {
+            firstName: firstName,
+            lastName: lastName,
+            claimAmount: claimAmount,
+        },
+    }
+
+    // return (dispatch: Dispatch): void => {
+    //     dispatch<CreateClaim>(
+    //         {
+    //             type: InsuranceTypes.createClaim,
+    //             payload: {
+    //                 firstName: firstName,
+    //                 lastName: lastName,
+    //                 claimAmount: claimAmount,
+    //             },
+    //         }
+    //     );
+    // };
 };

@@ -23,6 +23,14 @@ class _App extends React.Component<AppProps, AppState> {
         }
     }
 
+
+    render() {
+        return (
+            <div>
+                <h2>Hi Peter, this is React</h2>
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = (state: StoreState): any => {

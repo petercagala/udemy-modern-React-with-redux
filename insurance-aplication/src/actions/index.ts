@@ -1,22 +1,15 @@
 import {AnyAction} from "redux";
 import {InsuranceTypes} from './types';
+import {Claim, Policy} from "../reducers";
 
 export interface CreatePolicy extends AnyAction {
     type: InsuranceTypes.createPolicy;
-    payload: {
-        firstName: string;
-        lastName: string;
-        cash: number;
-    };
+    payload: Policy;
 }
 
 export interface CreateClaim extends AnyAction {
     type: InsuranceTypes.createClaim;
-    payload: {
-        firstName: string;
-        lastName: string;
-        claimAmount: number;
-    };
+    payload: Claim;
 }
 
 export interface DeletePolicy extends AnyAction {

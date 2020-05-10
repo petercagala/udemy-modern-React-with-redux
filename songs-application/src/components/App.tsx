@@ -25,8 +25,12 @@ class _App extends React.Component<AppProps, AppState> {
 
     render() {
         return (
-            <div>
-                <SongList/>
+            <div className="ui container grid">
+                <div className="ui row">
+                    <div className="column eight wide">
+                        <SongList/>
+                    </div>
+                </div>
             </div>
         );
     }

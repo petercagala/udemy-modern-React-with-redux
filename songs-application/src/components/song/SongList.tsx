@@ -26,11 +26,11 @@ class _SongList extends React.Component<SongListProps, SongListState> {
 
         return this.props.songList.map<JSX.Element>(song => {
             return (
-                <div>
-                    <ul>
-                        <li>{song.name}</li>
-                        <li>{song.year}</li>
-                    </ul>
+                <div className="item" key={song.id}>
+                    <div className="rightFloatedContent">
+                        <button className="ui button primary">Select</button>
+                    </div>
+                    <div className="content">{song.name}</div>
                 </div>
             );
         })
@@ -43,9 +43,12 @@ class _SongList extends React.Component<SongListProps, SongListState> {
 
     render() {
         return (
-            <div>
+            <div className="ui divided list">
                 <h2>Song List</h2>
                 <button onClick={(e) => {this.handleOnClickGetAllSongs()}}>Get me some songs</button>
+                <br/>
+                <br/>
+                <br/>
                 {this.renderSongs()}
             </div>
         );

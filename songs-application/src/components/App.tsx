@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StoreState} from '../reducers/index';
 
+import {selectSong} from '../actions/index'
+
 import './App.css';
 
 

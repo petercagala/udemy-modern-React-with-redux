@@ -1,10 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM, {createPortal} from 'react-dom';
 import {App} from './components/App';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {reducers} from './reducers/index';
+import {selectAllSongs} from "./actions";
 
 // store represent antire redux aplication
 const store = createStore(reducers, applyMiddleware(thunk));

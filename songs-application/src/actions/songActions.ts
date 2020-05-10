@@ -1,16 +1,18 @@
 import {Dispatch} from "redux";
-import {SelectAllSongsAction, SelectSongAction, Song} from "./index";
-import {SongActionTypes} from "./index";
+import {SelectAllSongsAction, SelectByIdSongAction, SelectByNameSongAction , Song} from "./index";
+import {SongActionTypes, getSongListDefault} from "./index";
 
 
 export const selectSongById = (song: Song): Function => {
 
     return (dispatch: Dispatch): void => {
-        dispatch<SelectSongAction>({
+        dispatch<SelectByIdSongAction>({
             type: SongActionTypes.selectById,
             payload: {
                 id: song.id,
-                name: song.name
+                name: song.name,
+                duration: song.duration,
+                year: song.year,
             }
         })
     }
@@ -19,11 +21,13 @@ export const selectSongById = (song: Song): Function => {
 export const selectSongByName = (song: Song): Function => {
 
     return (dispatch: Dispatch): void => {
-        dispatch<SelectSongAction>({
+        dispatch<SelectByNameSongAction>({
             type: SongActionTypes.selectByName,
             payload: {
                 id: song.id,
-                name: song.name
+                name: song.name,
+                duration: song.duration,
+                year: song.year,
             }
         })
     }
@@ -34,6 +38,7 @@ export const selectAllSongs = (): Function => {
     return (dispatch: Dispatch): void => {
         dispatch<SelectAllSongsAction>({
             type: SongActionTypes.selectAll,
+            payload: getSongListDefault(),
         })
     }
 }

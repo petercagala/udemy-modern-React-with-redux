@@ -16,26 +16,26 @@ interface AppState {
 
 class _App extends React.Component<AppProps, AppState> {
 
-  constructor(props: AppProps, state: AppState) {
-    super(props);
+    constructor(props: AppProps, state: AppState) {
+        super(props);
 
-    this.state = {
-
+        this.state = {}
     }
-  }
 
 
-  render() {
-    return (
-        <div>
-          <SongList/>
-        </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <SongList/>
+            </div>
+        );
+    }
 }
 
-const mapStateToProps = (state: StoreState): any => {
-
+const mapStateToProps = (state: StoreState): {name: string} => {
+    return {
+        name: "Peter",
+    };
 }
 
 export const App = connect(

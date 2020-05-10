@@ -1,8 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {StoreState} from '../reducers/index';
-
-import {selectSong} from '../actions/index'
+import {SongList} from './song/SongList';
 
 import './App.css';
 
@@ -29,7 +28,7 @@ class _App extends React.Component<AppProps, AppState> {
   render() {
     return (
         <div>
-          <h2>Hi Peter, this is React</h2>
+          <SongList/>
         </div>
     );
   }

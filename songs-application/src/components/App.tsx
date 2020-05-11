@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StoreState} from '../reducers/index';
 import {SongList} from './song/SongList';
+import {SongDetail} from './song/SongDetail';
 
 import './App.css';
 
@@ -29,6 +30,9 @@ class _App extends React.Component<AppProps, AppState> {
                 <div className="ui row">
                     <div className="column eight wide">
                         <SongList/>
+                    </div>
+                    <div className="column eight wide">
+                        <SongDetail/>
                     </div>
                 </div>
             </div>

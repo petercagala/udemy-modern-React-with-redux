@@ -8,7 +8,6 @@ interface SongListProps {
     songList: Song[];
     selectAllSongs: Function;
     selectSong: Function;
-    selectedSong: Song | null;
 }
 
 interface SongListState {
@@ -24,7 +23,6 @@ class _SongList extends React.Component<SongListProps, SongListState> {
     }
 
     private renderSongs(): JSX.Element[] {
-        console.log(this.props);
 
         return this.props.songList.map<JSX.Element>(song => {
             return (
@@ -66,13 +64,10 @@ class _SongList extends React.Component<SongListProps, SongListState> {
  */
 const mapStateToProps = (state: StoreState): {
     songList: Song[];
-    selectedSong: Song | null;
 } => {
-    console.log(state);
 
     return {
         songList: state.songList,
-        selectedSong: state.selectedSong,
     };
 }
 

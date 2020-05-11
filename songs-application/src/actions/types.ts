@@ -1,6 +1,5 @@
 export enum SongActionTypes {
-    selectById,
-    selectByName,
+    selectSong,
     selectAll,
     delete,
 }

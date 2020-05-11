@@ -1,4 +1,4 @@
-import {bindActionCreators, Reducer} from "redux";
+import {Reducer } from "redux";
 import {Action, SongActionTypes} from '../actions'
 import {Song} from './'
 
@@ -14,13 +14,17 @@ export const songListReducer: Reducer<Song[], Action> = (songList: Song[] = [], 
     return songList;
 }
 
-export const selectedSongListReducer: Reducer<Song[], Action> = (songList: Song[] = [], action: Action) => {
-    switch(action.type) {
-        case SongActionTypes.selectByName:
-            return songList.filter(song => song.name === action.payload.name);
-        case SongActionTypes.selectById:
-            return songList.filter(song => song.id === action.payload.id);
-        default:
-            return [];
+export const selectedSongReducer: Reducer<Song | null, Action> = (selectedSong: Song | null | undefined, action: Action): Song | null => {
+
+    if(selectedSong === undefined) {
+        return null;
     }
+
+    switch(action.type) {
+        case SongActionTypes.selectSong:
+            return action.payload.song;
+        default:
+            return null;
+    };
+
 }

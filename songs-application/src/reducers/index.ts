@@ -1,5 +1,5 @@
 import {combineReducers, ReducersMapObject} from 'redux';
-import { songListReducer, selectedSongListReducer} from "./reducers";
+import { songListReducer, selectedSongReducer} from "./reducers";
 
 
 export interface Song {
@@ -12,12 +12,12 @@ export interface Song {
 
 export interface StoreState {
     songList: Song[];
-    selectedSong: Song[];
+    selectedSong: Song | null;
 }
 
 
 export const reducers = combineReducers<StoreState>({
         songList: songListReducer,
-        selectedSong:  selectedSongListReducer,
+        selectedSong: selectedSongReducer
     }
 );

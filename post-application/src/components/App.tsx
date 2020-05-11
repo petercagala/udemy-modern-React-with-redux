@@ -2,8 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StoreState} from '../reducers/index';
 
-import './App.css';
-
 
 interface AppProps {
 
@@ -31,8 +29,10 @@ class _App extends React.Component<AppProps, AppState> {
     }
 }
 
-const mapStateToProps = (state: StoreState): any => {
+const mapStateToProps = (state: StoreState): {  } => {
+    return {
 
+    }
 }
 
 export const App = connect(

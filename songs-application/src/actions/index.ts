@@ -2,7 +2,7 @@ import {AnyAction} from "redux";
 import {SongActionTypes} from "./types";
 import {getSongListDefault} from './songListStore';
 
-export {selectSong, selectAllSongs} from './songActions';
+export {selectSong, selectAllSongs} from './TemplateAction';
 export {SongActionTypes} from "./types";
 export {getSongListDefault};
 

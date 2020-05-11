@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {StoreState, Song} from "../../reducers";
-import {selectAllSongs, selectSong} from "../../actions";
+import {selectAllSongs, selectSong, SelectSongAction} from "../../actions";
 
 
 interface SongListProps {

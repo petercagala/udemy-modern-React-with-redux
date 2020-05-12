@@ -1,11 +1,14 @@
 import {Reducer} from 'redux';
-import {Action} from '../actions/index';
+import {Action, ActionTypes} from '../actions/index';
+import {Post} from './';
 
 
-export const exampleReducer: Reducer<string | null, Action> = (name: string | null | undefined , action: Action): string | null => {
-    if(name === undefined) {
-        name =  null;
+export const postsReducer: Reducer<Post[], Action> = (posts: Post[] = [], action: Action): Post[] => {
+
+    switch (action.type) {
+        case ActionTypes.fetchPost:
+            return action.payload;
+        default:
+            return posts;
     }
-
-    return null;
 };

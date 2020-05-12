@@ -1,12 +1,19 @@
 import {combineReducers, ReducersMapObject} from 'redux';
-import {exampleReducer} from './postReducers';
+import {postsReducer} from './postReducers';
+
+export interface Post {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+}
 
 export interface StoreState {
-    name: string | null;
+    posts: Post[];
 }
 
 
 export const reducers = combineReducers<StoreState>({
-        name: exampleReducer,
+        posts: postsReducer,
     }
 );

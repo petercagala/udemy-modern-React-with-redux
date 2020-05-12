@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {StoreState} from '../reducers/index';
+import {StoreState, Post} from '../reducers/index';
 
 import {fetchPost} from '../actions';
 
 
 interface PostListProps {
     fetchPost: Function;
+    postList: Post[];
 }
 
 interface PostListState {
@@ -27,6 +28,8 @@ class _PostList extends React.Component<PostListProps, PostListState> {
     }
 
     render() {
+        console.log(this.props.postList);
+
         return (
             <div>
                 <h2>Post List</h2>
@@ -35,8 +38,10 @@ class _PostList extends React.Component<PostListProps, PostListState> {
     }
 }
 
-const mapStateToProps = (state: StoreState): {} => {
-    return {};
+const mapStateToProps = (state: StoreState): {postList: Post[]} => {
+    return {
+        postList: state.posts,
+    };
 }
 
 export const PostList = connect(

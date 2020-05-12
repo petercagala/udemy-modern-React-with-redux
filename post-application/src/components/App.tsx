@@ -4,6 +4,7 @@ import {StoreState} from '../reducers/index';
 import {PostList} from './PostList';
 
 
+
 interface AppProps {
 
 }
@@ -24,7 +25,6 @@ class _App extends React.Component<AppProps, AppState> {
     render() {
         return (
             <div className="ui container">
-                <h2>Hi Peter, this is React</h2>
                 <PostList/>
             </div>
         );

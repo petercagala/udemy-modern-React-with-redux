@@ -1,11 +1,19 @@
 import {AnyAction} from "redux";
-import {TemplateAction} from "./TemplateAction";
+import {ActionTypes} from "./actionTypes";
 
-export {TemplateAction} from "./TemplateAction";
+export {ActionTypes} from "./actionTypes";
+export {fetchPost} from './postActions';
 
-interface MyAction extends AnyAction {
-    type: TemplateAction.send;
-    payload: string;
+export interface Post {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
 }
 
-export type Action = MyAction;
+export interface FetchPostAction extends AnyAction {
+    type: ActionTypes.fetchPost;
+    payload: Post;
+}
+
+export type Action = FetchPostAction;

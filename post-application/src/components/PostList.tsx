@@ -2,9 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StoreState} from '../reducers/index';
 
+import {fetchPost} from '../actions';
+
 
 interface PostListProps {
-
+    fetchPost: Function;
 }
 
 interface PostListState {
@@ -19,6 +21,10 @@ class _PostList extends React.Component<PostListProps, PostListState> {
         this.state = {}
     }
 
+
+    componentDidMount() {
+        this.props.fetchPost();
+    }
 
     render() {
         return (
@@ -35,5 +41,7 @@ const mapStateToProps = (state: StoreState): {} => {
 
 export const PostList = connect(
     mapStateToProps,
-    {}
+    {
+        fetchPost: fetchPost,
+    }
 )(_PostList);

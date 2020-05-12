@@ -13,7 +13,7 @@ export interface Post {
 
 export interface FetchPostAction extends AnyAction {
     type: ActionTypes.fetchPost;
-    payload: Post;
+    payload: Post[];
 }
 
 export type Action = FetchPostAction;

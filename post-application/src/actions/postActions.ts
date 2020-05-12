@@ -1,31 +1,27 @@
 import {ActionTypes, FetchPostAction, Post} from './';
 import {jsonPlaceHolder} from '../apis';
 import {Dispatch} from "redux";
-import thunk from 'redux-thunk';
 import {StoreState} from "../reducers";
+import {AxiosResponse} from "axios";
 
 export const  fetchPost =  (): Function => {
 
     /**
      * dispatch and getState is unlimited power of redux applicaton
      * dispatch: change any data we want
-     * getState: read (access) any data we want
+     * getState: read (access) any data we want, getState nieje povinny parameter, napriklad tu ho ani nebudeme potrebovat
      */
-    return async (dispatch: Dispatch<FetchPostAction>, getState: () => StoreState): Promise<FetchPostAction> => {
-        const response =  await jsonPlaceHolder().get("/posts");
+    return async (dispatch: Dispatch<FetchPostAction>, getState: () => StoreState) => {
+        const response: AxiosResponse<Post[]> =  await jsonPlaceHolder().get("/posts");
 
 
-        const post: Post = {
-            userId: 1,
-            id: 1,
-            body: "myBody",
-            title: "myTitle",
-        }
-
-        return {
+        const fetchPostAction: FetchPostAction = {
             type: ActionTypes.fetchPost,
-            payload: post,
+            payload: response.data,
         }
+
+        // Dispatch si spravime krasne manualne, ked sa skonci await
+        dispatch<FetchPostAction>(fetchPostAction);
     }
 
 

@@ -12,7 +12,7 @@ export const  fetchPost =  (): Function => {
      * getState: read (access) any data we want, getState nieje povinny parameter, napriklad tu ho ani nebudeme potrebovat
      */
     return async (dispatch: Dispatch<FetchPostAction>, getState: () => StoreState) => {
-        const response: AxiosResponse<Post[]> =  await jsonPlaceHolder().get("/posts");
+        const response: AxiosResponse<Post[]> =  await jsonPlaceHolder().get<Post[], AxiosResponse<Post[]>>("/posts");
 
 
         const fetchPostAction: FetchPostAction = {

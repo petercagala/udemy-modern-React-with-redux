@@ -27,14 +27,34 @@ class _PostList extends React.Component<PostListProps, PostListState> {
         this.props.fetchPost();
     }
 
+    private renderList(): JSX.Element[] {
+        return (
+            this.props.postList.map<JSX.Element>((post) => {
+                return (
+                    <div className="item" key={post.id}>
+                        <i className="large middle aligned icon utensil utensils"/>
+                        <div className="content">
+                            <div className="description">
+                                <h2>{post.title}</h2>
+                                <p>
+                                    {post.body}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                );
+            })
+        );
+    }
+
     render() {
-        console.log(this.props.postList);
+
 
         return (
-            <div>
-                <h2>Post List</h2>
+            <div className="ui relaxed divided list">
+                {this.renderList()}
             </div>
-        );
+        )
     }
 }
 

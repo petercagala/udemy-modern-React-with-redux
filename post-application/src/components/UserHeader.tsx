@@ -1,14 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {StoreState} from '../reducers/index';
-import {fetchUser} from '../actions';
 import {User} from '../reducers'
 
 
 interface UserHeaderProps {
-    fetchUser: Function;
-    userId: number;
-    users: User[];
+    user: User | null;
 }
 
 interface UserHeaderState {
@@ -24,23 +21,11 @@ class _UserHeader extends React.Component<UserHeaderProps, UserHeaderState> {
     }
 
 
-    componentDidMount() {
-        this.props.fetchUser(this.props.userId);
-    }
-
-    private findUserById(): User | null {
-        const user: User | undefined = this.props.users.find((user) => user.id === this.props.userId);
-
-        return user ? user: null;
-    }
-
     private renderUser(): JSX.Element {
-        const user: User | null = this.findUserById();
-
         return (
             <div>
-                <h3>{user ? user.name: "Loading..."}</h3>
-                <h4>{user?.email}</h4>
+                <h3>{this.props.user ? this.props.user.name: "Loading..."}</h3>
+                <h4>{this.props.user?.email}</h4>
             </div>
         );
     }
@@ -54,16 +39,12 @@ class _UserHeader extends React.Component<UserHeaderProps, UserHeaderState> {
     }
 }
 
-const mapStateToProps = (state: StoreState): {users: User[]} => {
-
-    return {
-        users: state.users,
-    };
-}
+// const mapStateToProps = (state: StoreState): void => {
+//
+// }
 
 export const UserHeader = connect(
-    mapStateToProps,
+    null,
     {
-        fetchUser: fetchUser,
     }
 )(_UserHeader);

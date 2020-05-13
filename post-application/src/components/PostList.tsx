@@ -1,14 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {StoreState, Post} from '../reducers/index';
+import {StoreState, Post, User} from '../reducers/index';
 
-import {fetchPost} from '../actions';
+import {fetchPost, fetchUser} from '../actions';
 import {UserHeader} from './UserHeader';
 
 
 interface PostListProps {
     fetchPost: Function;
+    fetchUser: Function;
     postList: Post[];
+    users: User[];
 }
 
 interface PostListState {
@@ -28,6 +30,19 @@ class _PostList extends React.Component<PostListProps, PostListState> {
         this.props.fetchPost();
     }
 
+    private findUserById(userId: number): User | null {
+        const user: User | undefined = this.props.users.find(user => user.id === userId);
+        if(user) {
+            return user
+        } else {
+            this.props.fetchUser(userId);
+        }
+
+        const fetchedUser: User | undefined = this.props.users.find((user) => user.id === userId);
+
+        return fetchedUser ? fetchedUser: null;
+    }
+
     private renderList(): JSX.Element[] {
         return (
             this.props.postList.map<JSX.Element>((post) => {
@@ -41,7 +56,7 @@ class _PostList extends React.Component<PostListProps, PostListState> {
                                     {post.body}
                                 </p>
                             </div>
-                            <UserHeader userId={post.userId}/>
+                            <UserHeader user={this.findUserById(post.userId)} />
                         </div>
                     </div>
                 );
@@ -60,9 +75,13 @@ class _PostList extends React.Component<PostListProps, PostListState> {
     }
 }
 
-const mapStateToProps = (state: StoreState): {postList: Post[]} => {
+const mapStateToProps = (state: StoreState): {
+    postList: Post[];
+    users: User[];
+} => {
     return {
         postList: state.posts,
+        users: state.users,
     };
 }
 
@@ -70,5 +89,6 @@ export const PostList = connect(
     mapStateToProps,
     {
         fetchPost: fetchPost,
+        fetchUser: fetchUser,
     }
 )(_PostList);

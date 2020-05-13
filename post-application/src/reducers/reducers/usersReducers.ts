@@ -6,7 +6,7 @@ import {Action, ActionTypes, User as UserAction} from '../../actions/';
 export const usersReducer: Reducer<UserState[], Action> = (users: UserState[] = [], action: Action ): UserState[] => {
     switch(action.type) {
         case ActionTypes.fetchUser:
-            return [...users, mapUserActionToState(action.data)];
+            return [...users, mapUserActionToState(action.payload)];
         default:
             return users;
     }

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {StoreState, Post} from '../reducers/index';
 
 import {fetchPost} from '../actions';
+import {UserHeader} from './UserHeader';
 
 
 interface PostListProps {
@@ -40,6 +41,7 @@ class _PostList extends React.Component<PostListProps, PostListState> {
                                     {post.body}
                                 </p>
                             </div>
+                            <UserHeader userId={post.userId}/>
                         </div>
                     </div>
                 );

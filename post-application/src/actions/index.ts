@@ -1,19 +1,14 @@
-import {AnyAction} from "redux";
-import {ActionTypes} from "./actionTypes";
+import {ActionTypes} from "./types/actionTypes";
+import {FetchPostAction} from "./actions/postActions";
+import {FetchUserAction} from "./actions/userActions";
+import {Post as PostType} from './structures/Post';
+import {User as UserType} from './structures/User';
 
-export {ActionTypes} from "./actionTypes";
-export {fetchPost} from './postActions';
+export {ActionTypes} from "./types/actionTypes";
+export {fetchPost} from './actions/postActions';
+export {fetchUser} from './actions/userActions'
+export type Post = PostType;
+export type User = UserType;
 
-export interface Post {
-    userId: number;
-    id: number;
-    title: string;
-    body: string;
-}
 
-export interface FetchPostAction extends AnyAction {
-    type: ActionTypes.fetchPost;
-    payload: Post[];
-}
-
-export type Action = FetchPostAction;
+export type Action = FetchPostAction | FetchUserAction;

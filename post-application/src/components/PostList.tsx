@@ -2,13 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StoreState, Post, User} from '../reducers/index';
 
-import {fetchPost, fetchUser} from '../actions';
+import {fetchPost, fetchPostAndUsers} from '../actions';
 import {UserHeader} from './UserHeader';
 
 
 interface PostListProps {
-    fetchPost: Function;
-    fetchUser: Function;
+    fetchPostAndUsers: Function;
     postList: Post[];
     users: User[];
 }
@@ -27,7 +26,7 @@ class _PostList extends React.Component<PostListProps, PostListState> {
 
 
     componentDidMount() {
-        this.props.fetchPost();
+        this.props.fetchPostAndUsers();
     }
 
     private findUserById(userId: number): User | null {
@@ -35,8 +34,10 @@ class _PostList extends React.Component<PostListProps, PostListState> {
         if(user) {
             return user
         } else {
-            this.props.fetchUser(userId);
+            // this.props.fetchUser(userId);
         }
+
+        // this.props.fetchUser(userId);
 
         const fetchedUser: User | undefined = this.props.users.find((user) => user.id === userId);
 
@@ -88,7 +89,6 @@ const mapStateToProps = (state: StoreState): {
 export const PostList = connect(
     mapStateToProps,
     {
-        fetchPost: fetchPost,
-        fetchUser: fetchUser,
+        fetchPostAndUsers: fetchPostAndUsers,
     }
 )(_PostList);

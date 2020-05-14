@@ -7,6 +7,7 @@ import {User as UserType} from './structures/User';
 export {ActionTypes} from "./types/actionTypes";
 export {fetchPost} from './actions/postActions';
 export {fetchUser} from './actions/userActions'
+export {fetchPostAndUsers} from './actions/postAndUsersActions';
 export type Post = PostType;
 export type User = UserType;
 

@@ -9,6 +9,7 @@ export interface FetchPostAction extends AnyAction {
     payload: Post[];
 }
 
+
 export const  fetchPost =  (): Function => {
 
     /**
@@ -16,7 +17,7 @@ export const  fetchPost =  (): Function => {
      * dispatch: change any data we want
      * getState: read (access) any data we want, getState nieje povinny parameter, napriklad tu ho ani nebudeme potrebovat
      */
-    return async (dispatch: Dispatch<FetchPostAction>, getState: () => StoreState) => {
+    return async (dispatch: Dispatch<FetchPostAction>, getState: () => StoreState): Promise<void> => {
         const response: AxiosResponse<Post[]> =  await jsonPlaceHolder().get<Post[], AxiosResponse<Post[]>>("/posts");
 
 

@@ -2,6 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StoreState} from '../reducers/index';
 
+import {Route, Switch} from 'react-router-dom';
+import {Page1} from './Page1';
+import {Page2} from './Page2';
+
 
 interface AppProps {
 
@@ -23,7 +27,11 @@ class _App extends React.Component<AppProps, AppState> {
     render() {
         return (
             <div className="ui container">
-                <h2>Hi Peter, this is React</h2>
+                <Switch>
+                    {/*Ked tam nedam exact, zoberie aj nieco taketo http://localhost:3000/page2/esteNieco*/}
+                    <Route path={"/"} exact component={Page1}></Route>
+                    <Route path={"/page2"} component={Page2}></Route>
+                </Switch>
             </div>
         );
     }

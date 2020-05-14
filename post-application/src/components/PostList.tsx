@@ -31,17 +31,11 @@ class _PostList extends React.Component<PostListProps, PostListState> {
 
     private findUserById(userId: number): User | null {
         const user: User | undefined = this.props.users.find(user => user.id === userId);
-        if(user) {
-            return user
-        } else {
-            // this.props.fetchUser(userId);
-        }
 
-        // this.props.fetchUser(userId);
+        console.log("Toto su moji users:");
+        console.log(this.props.users);
 
-        const fetchedUser: User | undefined = this.props.users.find((user) => user.id === userId);
-
-        return fetchedUser ? fetchedUser: null;
+        return user ? user: null;
     }
 
     private renderList(): JSX.Element[] {

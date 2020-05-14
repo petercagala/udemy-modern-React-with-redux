@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StoreState} from '../reducers/index';
 import {Link} from 'react-router-dom';
+import {GoogleOuth} from './GoogleOuth';
 
 
 interface HeaderProps {
@@ -24,12 +25,13 @@ class _Header extends React.Component<HeaderProps, HeaderState> {
     render() {
         return (
             <div className="ui secondary pointing menu">
-                <Link to={"/"} className={"item"}>Streamer</Link>
-                <div className={"right menu"}>
-                    <Link to={"/"} className="item">All Streams</Link>
+                <div className="left menu">
+                    <Link to={"/"} className={"item"}>Streamer</Link>
                 </div>
-
-
+                <div className="right menu">
+                    <Link to={"/"} className="item">All Streams</Link>
+                    <GoogleOuth/>
+                </div>
             </div>
         );
     }

@@ -1,12 +1,17 @@
 import {combineReducers, ReducersMapObject} from 'redux';
-import {exampleReducer} from './reducers/exampleReducer';
+import {authenticationReducer} from './reducers/authenticationReducer';
+
+export interface Authenticate {
+    isSignIn: boolean | null;
+    userId: string | null;
+}
 
 export interface StoreState {
-    name: string | null;
+    authenticate: Authenticate;
 }
 
 
 export const reducers = combineReducers<StoreState>({
-        name: exampleReducer,
+    authenticate: authenticationReducer,
     }
 );

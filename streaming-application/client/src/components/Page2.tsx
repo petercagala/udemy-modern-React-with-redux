@@ -24,6 +24,7 @@ class _Page2 extends React.Component<Page2Props, Page2State> {
         return (
             <div className="ui container">
                 <h2>Page 2</h2>
+                <a href={"/"}>Odkaz na Page 1</a>
             </div>
         );
     }

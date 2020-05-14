@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {StoreState} from '../reducers/index';
+import {Link} from "react-router-dom";
 
 
 interface Page1Props {
@@ -24,7 +25,7 @@ class _Page1 extends React.Component<Page1Props, Page1State> {
         return (
             <div className="ui container">
                 <h2>Page 1</h2>
-                <a href={"/page2"}>Odkaz na Page 2</a>
+                <Link to={"/page2"}>Link to Page 2</Link>
             </div>
         );
     }

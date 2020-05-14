@@ -3,8 +3,11 @@ import {connect} from 'react-redux';
 import {StoreState} from '../reducers/index';
 
 import {Route, Switch} from 'react-router-dom';
-import {Page1} from './Page1';
-import {Page2} from './Page2';
+import {StreamCreate} from './streams/StreamCreate';
+import {StreamDelete} from './streams/StreamDelete';
+import {StreamEdit} from './streams/StreamEdit';
+import {StreamList} from './streams/StreamList';
+import {StreamShow} from './streams/StreamShow';
 
 
 interface AppProps {
@@ -28,11 +31,11 @@ class _App extends React.Component<AppProps, AppState> {
         return (
             <div className="ui container">
                 <Switch>
-                    {/*Ked tam nedam exact, zoberie aj nieco taketo http://localhost:3000/page2/esteNieco
-                    Switch: Zabezpeci, ze sa zobrazi vzdy iba jeden komponent, ktory splna podmienky path.
-                    Ak by sme Switch nedali, zobrazia sa vsetky komponenty, ktore splnaju podmienku*/}
-                    <Route path={"/"} exact={true}  component={Page1}></Route>
-                    {/*<Route path={"/page2"} component={Page2}></Route>*/}
+                    <Route path={"/"} exact component={StreamList}></Route>
+                    <Route path={"/streams/new"} exact component={StreamCreate}></Route>
+                    <Route path={"/streams/edit"} exact component={StreamEdit}></Route>
+                    <Route path={"/streams/delete"} exact component={StreamDelete}></Route>
+                    <Route path={"/streams/show"} exact component={StreamShow}></Route>
                 </Switch>
             </div>
         );

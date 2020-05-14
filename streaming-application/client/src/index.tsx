@@ -5,7 +5,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {reducers} from './reducers/index';
-import {BrowserRouter, Router} from 'react-router-dom';
+import {BrowserRouter, HashRouter, Router} from 'react-router-dom';
 
 // store represent antire redux aplication
 const store = createStore(reducers, applyMiddleware(thunk));
@@ -18,6 +18,9 @@ ReactDOM.render(
         <BrowserRouter>
             <App/>
         </BrowserRouter>
+        {/*<HashRouter>*/}
+        {/*    <App/>*/}
+        {/*</HashRouter>*/}
     </Provider>,
     document.getElementById('root')
 );

@@ -32,7 +32,7 @@ class _App extends React.Component<AppProps, AppState> {
                     Switch: Zabezpeci, ze sa zobrazi vzdy iba jeden komponent, ktory splna podmienky path.
                     Ak by sme Switch nedali, zobrazia sa vsetky komponenty, ktore splnaju podmienku*/}
                     <Route path={"/"} exact={true}  component={Page1}></Route>
-                    <Route path={"/page2"} component={Page2}></Route>
+                    {/*<Route path={"/page2"} component={Page2}></Route>*/}
                 </Switch>
             </div>
         );

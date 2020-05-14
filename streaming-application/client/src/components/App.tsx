@@ -8,6 +8,7 @@ import {StreamDelete} from './streams/StreamDelete';
 import {StreamEdit} from './streams/StreamEdit';
 import {StreamList} from './streams/StreamList';
 import {StreamShow} from './streams/StreamShow';
+import {Header} from './Header';
 
 
 interface AppProps {
@@ -30,6 +31,7 @@ class _App extends React.Component<AppProps, AppState> {
     render() {
         return (
             <div className="ui container">
+                <Header/>
                 <Switch>
                     <Route path={"/"} exact component={StreamList}></Route>
                     <Route path={"/streams/new"} exact component={StreamCreate}></Route>

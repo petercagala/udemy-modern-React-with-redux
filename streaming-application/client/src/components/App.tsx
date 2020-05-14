@@ -28,8 +28,10 @@ class _App extends React.Component<AppProps, AppState> {
         return (
             <div className="ui container">
                 <Switch>
-                    {/*Ked tam nedam exact, zoberie aj nieco taketo http://localhost:3000/page2/esteNieco*/}
-                    <Route path={"/"} exact component={Page1}></Route>
+                    {/*Ked tam nedam exact, zoberie aj nieco taketo http://localhost:3000/page2/esteNieco
+                    Switch: Zabezpeci, ze sa zobrazi vzdy iba jeden komponent, ktory splna podmienky path.
+                    Ak by sme Switch nedali, zobrazia sa vsetky komponenty, ktore splnaju podmienku*/}
+                    <Route path={"/"} exact={true}  component={Page1}></Route>
                     <Route path={"/page2"} component={Page2}></Route>
                 </Switch>
             </div>

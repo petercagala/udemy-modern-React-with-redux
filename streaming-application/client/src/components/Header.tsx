@@ -26,10 +26,12 @@ class _Header extends React.Component<HeaderProps, HeaderState> {
         return (
             <div className="ui secondary pointing menu">
                 <Link to={"/"} className={"item"}>Streamer</Link>
-                <div className={"right menu"}>
+                <div className="right menu">
                     <Link to={"/"} className="item">All Streams</Link>
                 </div>
                 <GoogleOuth/>
+
+
 
             </div>
         );

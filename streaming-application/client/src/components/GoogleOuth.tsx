@@ -65,24 +65,22 @@ class _GoogleOuth extends React.Component<GoogleOuthProps, GoogleOuthState> {
         );
     }
 
-    private renderAutButton(): JSX.Element {
+    private renderAutButton(): JSX.Element | null {
         if (this.state.isSignedIn === null) {
-            return (
-                <div>
-                    I don't know, if we are signed in!!!
-                </div>
-            );
+            return null;
         } else if (this.state.isSignedIn === false) {
             return (
-                <div>
-                    You are not signed in !!!
-                </div>
+                <button className="ui red google button">
+                    <i className="google icon"></i>
+                    Sign in with Google
+                </button>
             );
         } else {
             return (
-                <div>
-                    You are signed in, PERFECT !!!
-                </div>
+                <button className="ui red google button">
+                    <i className="google icon"></i>
+                    Sign out
+                </button>
             );
         }
 
@@ -92,7 +90,9 @@ class _GoogleOuth extends React.Component<GoogleOuthProps, GoogleOuthState> {
     render() {
         return (
             <div className="ui container">
-                {this.renderAutButton()}
+                <div className="right menu">
+                    {this.renderAutButton()}
+                </div>
             </div>
         );
     }

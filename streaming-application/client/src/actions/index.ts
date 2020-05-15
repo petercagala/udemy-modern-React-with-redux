@@ -1,11 +1,11 @@
-import {ActionTypes} from "./types/actionTypes";
-import {defaultAction} from "./actions/defaultAction";
-import {DefaultAction} from "./actions/defaultAction";
+import {AuthenticationActionTypes} from "./types/authenticationActionTypes";
+import {signInAction, signOutAction} from "./actions/signInAction";
+import {SignInAction, SignOutAction} from "./actions/signInAction";
 import {Type as DefaultType} from './structures/Type';
 
-export {ActionTypes} from "./types/actionTypes";
-export {defaultAction} from './actions/defaultAction';
+export {AuthenticationActionTypes} from "./types/authenticationActionTypes";
+export {signInAction, signOutAction} from './actions/signInAction';
 export type Type = DefaultType;
 
 
-export type Action = DefaultAction;
+export type Action = SignInAction | SignOutAction;

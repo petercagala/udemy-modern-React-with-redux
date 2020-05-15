@@ -70,29 +70,33 @@ class _GoogleOuth extends React.Component<GoogleOuthProps, GoogleOuthState> {
             return null;
         } else if (this.state.isSignedIn === false) {
             return (
-                <button className="ui red google button">
+                <button onClick={this.handleSignIn} className="ui red google button" >
                     <i className="google icon"></i>
                     Sign in with Google
                 </button>
             );
         } else {
             return (
-                <button className="ui red google button">
+                <button onClick={this.handleSignOut} className="ui red google button" >
                     <i className="google icon"></i>
                     Sign out
                 </button>
             );
         }
-
-
     }
+
+     private handleSignIn = (): void => {
+        this.state.auth?.signIn();
+    };
+
+    private handleSignOut = (): void => {
+        this.state.auth?.signOut();
+    };
 
     render() {
         return (
             <div className="ui container">
-                <div className="right menu">
-                    {this.renderAutButton()}
-                </div>
+                {this.renderAutButton()}
             </div>
         );
     }

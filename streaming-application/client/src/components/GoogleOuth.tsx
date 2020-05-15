@@ -2,10 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StoreState} from '../reducers/index';
 import {signInAction, signOutAction} from "../actions/";
+import {SignInAction, SignOutAction} from "../actions/actions/signInAction";
 
 interface GoogleOAuthProps {
-    signInAction: Function;
-    signOutAction: Function;
+    signInAction: (userId: string | null) => SignInAction;
+    signOutAction: () => SignOutAction;
     isSignedIn: boolean | null;
 }
 
@@ -59,7 +60,9 @@ class _GoogleOuth extends React.Component<GoogleOAuthProps, GoogleOuthState> {
         console.log(`handleAuthChange: ${isSignedIn}`);
 
         if(isSignedIn) {
-            this.props.signInAction();
+            this.props.signInAction(
+                this.state.auth ? this.state.auth.currentUser.get().getId() : null
+            );
         } else{
             this.props.signOutAction();
         }

@@ -3,6 +3,9 @@ import {AuthenticationActionTypes} from '../';
 
 export interface SignInAction extends AnyAction {
     type: AuthenticationActionTypes.signIn;
+    payload: {
+        userId: string | null;
+    }
 }
 
 export interface SignOutAction extends AnyAction {
@@ -10,9 +13,12 @@ export interface SignOutAction extends AnyAction {
 }
 
 
-export const signInAction = (): SignInAction => {
+export const signInAction = (userId: string | null): SignInAction => {
     const signInAction: SignInAction = {
         type: AuthenticationActionTypes.signIn,
+        payload: {
+            userId: userId,
+        }
     }
 
     return signInAction;

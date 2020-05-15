@@ -1,24 +1,24 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {StoreState} from '../reducers/index';
-// import GoogleAuth = gapi.auth2.GoogleAuth;
+import {signInAction, signOutAction} from "../actions/";
 
-interface GoogleOuthProps {
-
+interface GoogleOAuthProps {
+    signInAction: Function;
+    signOutAction: Function;
+    isSignedIn: boolean | null;
 }
 
 interface GoogleOuthState {
-    isSignedIn: boolean | null;
     auth: gapi.auth2.GoogleAuth | null;
 }
 
-class _GoogleOuth extends React.Component<GoogleOuthProps, GoogleOuthState> {
+class _GoogleOuth extends React.Component<GoogleOAuthProps, GoogleOuthState> {
 
-    constructor(props: GoogleOuthProps, state: GoogleOuthState) {
+    constructor(props: GoogleOAuthProps, state: GoogleOuthState) {
         super(props);
 
         this.state = {
-            isSignedIn: null,
             auth: null,
         }
     }
@@ -44,12 +44,10 @@ class _GoogleOuth extends React.Component<GoogleOuthProps, GoogleOuthState> {
                                 auth: window.gapi.auth2.getAuthInstance(),
                             }
                         )
-                        this.setState({
-                                isSignedIn: this.state.auth ? this.state.auth.isSignedIn.get() : null,
-                            }
-                        );
+
+                        // initalization of update out state in redux store
+                        this.handleAuthChange(this.state.auth?.isSignedIn.get());
                         // Nastavime listenera na isSignedIn object. Ked sa na nom nieco zmeni, spusti sa arrow function
-                        //handleAuthChange
                         this.state.auth?.isSignedIn?.listen(this.handleAuthChange);
 
                     }
@@ -57,18 +55,22 @@ class _GoogleOuth extends React.Component<GoogleOuthProps, GoogleOuthState> {
         });
     }
 
-    private handleAuthChange = (): void => {
-        this.setState(
-            {
-                isSignedIn: this.state.auth?  this.state.auth.isSignedIn.get(): null,
-            }
-        );
+    private handleAuthChange = (isSignedIn: boolean | undefined): void => {
+        console.log(`handleAuthChange: ${isSignedIn}`);
+
+        if(isSignedIn) {
+            this.props.signInAction();
+        } else{
+            this.props.signOutAction();
+        }
     }
 
     private renderAutButton(): JSX.Element | null {
-        if (this.state.isSignedIn === null) {
+        console.log(`renderAutButton: ${this.props.isSignedIn}`);
+
+        if (this.props.isSignedIn === null) {
             return null;
-        } else if (this.state.isSignedIn === false) {
+        } else if (this.props.isSignedIn === false) {
             return (
                 <button onClick={this.handleSignIn} className="ui red google button" >
                     <i className="google icon"></i>
@@ -102,11 +104,16 @@ class _GoogleOuth extends React.Component<GoogleOuthProps, GoogleOuthState> {
     }
 }
 
-const mapStateToProps = (state: StoreState): {} => {
-    return {};
+const mapStateToProps = (state: StoreState): {isSignedIn: boolean | null} => {
+    return {
+        isSignedIn: state.authenticate.isSignIn,
+    };
 }
 
 export const GoogleOuth = connect(
     mapStateToProps,
-    {}
+    {
+        signInAction: signInAction,
+        signOutAction: signOutAction,
+    }
 )(_GoogleOuth);

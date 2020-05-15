@@ -29,7 +29,7 @@ class _GoogleOuth extends React.Component<GoogleOuthProps, GoogleOuthState> {
             // o autentifikaciu nejakeho google klienta
             window.gapi.client.init({
                 clientId: "727390121568-6qi3hh4n35i6kkm6ms5v5n9q7nube1gg.apps.googleusercontent.com",
-                scope: 'emai',
+                scope: 'email',
             })
         });
 

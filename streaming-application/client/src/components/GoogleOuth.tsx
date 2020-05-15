@@ -7,7 +7,7 @@ interface GoogleOuthProps {
 }
 
 interface GoogleOuthState {
-
+    isSignedIn: boolean | null;
 }
 
 class _GoogleOuth extends React.Component<GoogleOuthProps, GoogleOuthState> {
@@ -15,7 +15,9 @@ class _GoogleOuth extends React.Component<GoogleOuthProps, GoogleOuthState> {
     constructor(props: GoogleOuthProps, state: GoogleOuthState) {
         super(props);
 
-        this.state = {}
+        this.state = {
+            isSignedIn: false,
+        }
     }
 
 
@@ -31,8 +33,37 @@ class _GoogleOuth extends React.Component<GoogleOuthProps, GoogleOuthState> {
                 clientId: "727390121568-6qi3hh4n35i6kkm6ms5v5n9q7nube1gg.apps.googleusercontent.com",
                 scope: 'email',
             })
+                // po inicializacii  aplikacie (klienta) potrebujeme vytiahnut auth object, pomocou ktoreho
+                // budeme pre nasu app autentifikovat usera pomocu google uctu
+                .then(() => {
+                    const auth: gapi.auth2.GoogleAuth = window.gapi.auth2.getAuthInstance();
+                    this.setState({
+                        isSignedIn: auth.isSignedIn.get(),
+                    })
+                })
         });
+    }
 
+    private renderAutButton(): JSX.Element {
+        if(this.state.isSignedIn === null) {
+            return (
+                <div>
+                    I don't know, if we are signed in!!!
+                </div>
+            );
+        } else if(this.state.isSignedIn === false) {
+            return (
+                <div>
+                    You are not signed in !!!
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    You are signed in, PERFECT !!!
+                </div>
+            );
+        }
 
 
 
@@ -41,7 +72,7 @@ class _GoogleOuth extends React.Component<GoogleOuthProps, GoogleOuthState> {
     render() {
         return (
             <div className="ui container">
-                <h5>Google Auth</h5>
+                {this.renderAutButton()}
             </div>
         );
     }
